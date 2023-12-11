@@ -181,13 +181,40 @@
                                                                                 <!-- Post -->
                                                                                 <div class="post">
                                                                                     <div class="row">
-                                                                                        <div class="col-6">
+                                                                                        <div class="col-sm-8">
                                                                                             <div class="form-group">
                                                                                                 <label>TITULO</label>
                                                                                                 <input value="<?php echo e($chamado->d_descricao); ?>" type="text" class="form-control" placeholder="Enter ..." disabled>
                                                                                             </div>
                                                                                         </div>
+                                                                                        <?php if($nivel == "A" || $nivel == "S"): ?>
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label for="select1">Prioridade</label>
+                                                                                                <select class="form-control select2" name="prioridade">
+                                                                                                    <?php if($chamado->PRIORIDADE == "1"): ?>
+                                                                                                    <option selected="true" value="<?php echo e($chamado->PRIORIDADE); ?>"> Alta </option>
+                                                                                                    <option value="3">Baixa</option>
+                                                                                                    <option value="2">Média</option>
+                                                                                                    <?php elseif($chamado->PRIORIDADE == "2"): ?>
+                                                                                                    <option selected="true" value="<?php echo e($chamado->PRIORIDADE); ?>"> Média </option>
+                                                                                                    <option value="3">Baixa</option>
+                                                                                                    <option value="1">Alta</option>
+                                                                                                    <?php elseif($chamado->PRIORIDADE == "3"): ?>
+                                                                                                    <option selected="true" value="<?php echo e($chamado->PRIORIDADE); ?>"> Baixa </option>
+                                                                                                    <option value="1">Alta</option>
+                                                                                                    <option value="2">Média</option>
+                                                                                                    <?php else: ?>
+                                                                                                    <option value="3">Baixa</option>
+                                                                                                    <option value="2">Média</option>
+                                                                                                    <option value="1">Alta</option>
+                                                                                                    <?php endif; ?>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <?php endif; ?>
                                                                                         <div class="row">
+                                                                                            <!--
                                                                                             <div class="col-sm-8">
                                                                                                 <label for="select1">Departamento</label>
                                                                                                 <select class="form-control select2" name="dpto">
@@ -200,35 +227,11 @@
                                                                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                                                 </select>
                                                                                             </div>
-                                                                                            <?php if($nivel == "A" || $nivel == "S"): ?>
-                                                                                            <div class="col-sm-4">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="select1">Prioridade</label>
-                                                                                                    <select class="form-control select2" name="prioridade">
-                                                                                                        <?php if($chamado->PRIORIDADE == "1"): ?>
-                                                                                                        <option selected="true" value="<?php echo e($chamado->PRIORIDADE); ?>"> Alta </option>
-                                                                                                        <option value="3">Baixa</option>
-                                                                                                        <option value="2">Média</option>
-                                                                                                        <?php elseif($chamado->PRIORIDADE == "2"): ?>
-                                                                                                        <option selected="true" value="<?php echo e($chamado->PRIORIDADE); ?>"> Média </option>
-                                                                                                        <option value="3">Baixa</option>
-                                                                                                        <option value="1">Alta</option>
-                                                                                                        <?php elseif($chamado->PRIORIDADE == "3"): ?>
-                                                                                                        <option selected="true" value="<?php echo e($chamado->PRIORIDADE); ?>"> Baixa </option>
-                                                                                                        <option value="1">Alta</option>
-                                                                                                        <option value="2">Média</option>
-                                                                                                        <?php else: ?>
-                                                                                                        <option value="3">Baixa</option>
-                                                                                                        <option value="2">Média</option>
-                                                                                                        <option value="1">Alta</option>
-                                                                                                        <?php endif; ?>
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                            <?php endif; ?>
-                                                                                            </div>
+                                                                                            -->
+
                                                                                         </div>
 
-                                                                                        <div id="grid-gallery" class="grid-gallery" class="card-primary filter-container p-0 row">
+                                                                                        <div id="grid-gallery" class="grid-gallery" class="card-primary filter-container p-0  row     ">
                                                                                             <?php $__currentLoopData = $imgs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                                             <?php if($chamado->NM_CHAMADO == $img->NM_CHAMADO): ?>
                                                                                             <div id="grid-gallery" class="grid-gallery col-sm-1">
@@ -236,7 +239,7 @@
                                                                                                     <a href="<?php echo e(asset('/storage/'.$img->IMAGEM)); ?>" data-toggle="lightbox" data-title="<?php echo e($img->IMAGEM); ?>" target="_blank">
                                                                                                         <img class="img-fluid mb-1" src="<?php echo e(asset('/storage/'.$img->IMAGEM)); ?>" width="120" height="100">
                                                                                                     </a>
-                                                                                                <?php else: ?> 
+                                                                                                <?php else: ?>
                                                                                                 <?php endif; ?>
                                                                                             </div>
                                                                                             <?php endif; ?>

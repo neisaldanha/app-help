@@ -88,6 +88,7 @@
                            </select>
                         </div>
                      </div>
+                     <!--
                      <div class="col-sm-6">
                         <label for="select1">Departamento</label>
                         <select class="form-control select2" name="dpto">
@@ -96,12 +97,13 @@
                            @endforeach
                         </select>
                      </div>
-                  </div>
-                  <br>
-                  <div id="imagem" class="">
-                     <div class="">
-                        <input type='file' name='arquivo[]' multiple>
-                     </div>
+                    -->
+                    <label>Arquivo</label>
+                    <div id="imagem" class="">
+                        <div class="">
+                            <input type='file' name='arquivo[]' multiple>
+                        </div>
+                    </div>
                   </div>
                   <br>
                   <div class="row">

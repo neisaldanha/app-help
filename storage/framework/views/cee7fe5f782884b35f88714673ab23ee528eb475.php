@@ -86,6 +86,7 @@
                            </select>
                         </div>
                      </div>
+                     <!--
                      <div class="col-sm-6">
                         <label for="select1">Departamento</label>
                         <select class="form-control select2" name="dpto">
@@ -94,12 +95,13 @@
                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                      </div>
-                  </div>
-                  <br>
-                  <div id="imagem" class="">
-                     <div class="">
-                        <input type='file' name='arquivo[]' multiple>
-                     </div>
+                    -->
+                    <label>Arquivo</label>
+                    <div id="imagem" class="">
+                        <div class="">
+                            <input type='file' name='arquivo[]' multiple>
+                        </div>
+                    </div>
                   </div>
                   <br>
                   <div class="row">

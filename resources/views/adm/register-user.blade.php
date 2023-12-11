@@ -21,6 +21,9 @@
                     <div class="panel-body">
                         <div id="profile-container" class="text-center">
                             <a href="#"><img id="profileImage" class="profile-user-img img-fluid img-circle" src=" @if (isset($user->FOTO)) {{asset('/storage/'.$user->FOTO)}}  @else {{asset('/imagens/user_default.png')}} @endif" width="268" height="268" alt="User"></a>
+
+                        </div>
+                        <div class="text-center">
                             <span><i class="fa fa-pencil"> Clique na imagem para Edita-la</i></span>
                         </div>
                         <input id="imageUpload" type="file" style="display: none;" value="@if (isset($user->FOTO)) {{asset('/storage/'.$user->FOTO)}}  @else {{asset('/imagens/user_default.png')}} @endif" name="arquivo" placeholder="Photo" capture>
@@ -147,9 +150,8 @@
                                 <input type="password" value="{{isset($user) ? $user->SENHA :''}}" class="form-control" id="password" name="password" placeholder="*********">
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <div style="margin-top:-10px" class=" col-sm-10">
+                            <div  class=" col-sm-10">
                                 <button type="submit" class="btn btn-danger">{{isset($user) ? 'Atualizar': 'Cadastar'}}</button>
                             </div>
                         </div>

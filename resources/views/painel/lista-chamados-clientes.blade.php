@@ -183,13 +183,40 @@
                                                                                 <!-- Post -->
                                                                                 <div class="post">
                                                                                     <div class="row">
-                                                                                        <div class="col-6">
+                                                                                        <div class="col-sm-8">
                                                                                             <div class="form-group">
                                                                                                 <label>TITULO</label>
                                                                                                 <input value="{{$chamado->d_descricao}}" type="text" class="form-control" placeholder="Enter ..." disabled>
                                                                                             </div>
                                                                                         </div>
+                                                                                        @if ($nivel == "A" || $nivel == "S")
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label for="select1">Prioridade</label>
+                                                                                                <select class="form-control select2" name="prioridade">
+                                                                                                    @if($chamado->PRIORIDADE == "1")
+                                                                                                    <option selected="true" value="{{$chamado->PRIORIDADE}}"> Alta </option>
+                                                                                                    <option value="3">Baixa</option>
+                                                                                                    <option value="2">Média</option>
+                                                                                                    @elseif($chamado->PRIORIDADE == "2")
+                                                                                                    <option selected="true" value="{{$chamado->PRIORIDADE}}"> Média </option>
+                                                                                                    <option value="3">Baixa</option>
+                                                                                                    <option value="1">Alta</option>
+                                                                                                    @elseif($chamado->PRIORIDADE == "3")
+                                                                                                    <option selected="true" value="{{$chamado->PRIORIDADE}}"> Baixa </option>
+                                                                                                    <option value="1">Alta</option>
+                                                                                                    <option value="2">Média</option>
+                                                                                                    @else
+                                                                                                    <option value="3">Baixa</option>
+                                                                                                    <option value="2">Média</option>
+                                                                                                    <option value="1">Alta</option>
+                                                                                                    @endif
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            @endif
+                                                                                        </div>
                                                                                         <div class="row">
+                                                                                            <!--
                                                                                             <div class="col-sm-8">
                                                                                                 <label for="select1">Departamento</label>
                                                                                                 <select class="form-control select2" name="dpto">
@@ -202,32 +229,8 @@
                                                                                                     @endforeach
                                                                                                 </select>
                                                                                             </div>
-                                                                                            @if ($nivel == "A" || $nivel == "S")
-                                                                                            <div class="col-sm-4">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="select1">Prioridade</label>
-                                                                                                    <select class="form-control select2" name="prioridade">
-                                                                                                        @if($chamado->PRIORIDADE == "1")
-                                                                                                        <option selected="true" value="{{$chamado->PRIORIDADE}}"> Alta </option>
-                                                                                                        <option value="3">Baixa</option>
-                                                                                                        <option value="2">Média</option>
-                                                                                                        @elseif($chamado->PRIORIDADE == "2")
-                                                                                                        <option selected="true" value="{{$chamado->PRIORIDADE}}"> Média </option>
-                                                                                                        <option value="3">Baixa</option>
-                                                                                                        <option value="1">Alta</option>
-                                                                                                        @elseif($chamado->PRIORIDADE == "3")
-                                                                                                        <option selected="true" value="{{$chamado->PRIORIDADE}}"> Baixa </option>
-                                                                                                        <option value="1">Alta</option>
-                                                                                                        <option value="2">Média</option>
-                                                                                                        @else
-                                                                                                        <option value="3">Baixa</option>
-                                                                                                        <option value="2">Média</option>
-                                                                                                        <option value="1">Alta</option>
-                                                                                                        @endif
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                            @endif
-                                                                                            </div>
+                                                                                        -->
+
                                                                                         </div>
 
                                                                                         <div id="grid-gallery" class="grid-gallery" class="card-primary filter-container p-0 row">
@@ -238,7 +241,7 @@
                                                                                                     <a href="{{asset('/storage/'.$img->IMAGEM)}}" data-toggle="lightbox" data-title="{{$img->IMAGEM}}" target="_blank">
                                                                                                         <img class="img-fluid mb-1" src="{{asset('/storage/'.$img->IMAGEM)}}" width="120" height="100">
                                                                                                     </a>
-                                                                                                @else 
+                                                                                                @else
                                                                                                 @endif
                                                                                             </div>
                                                                                             @endif

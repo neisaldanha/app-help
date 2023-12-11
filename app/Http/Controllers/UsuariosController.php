@@ -75,109 +75,108 @@ class UsuariosController extends Controller
     function dashboard()
     {
 
-        $ano = date('Y') ;
-        $data = ['LoggedUserInfo'=>tab_usuarios::where('ID_USUARIO','=', session('LoggedUser'))->first()];
+        $ano = date('Y');
+        $data = ['LoggedUserInfo' => tab_usuarios::where('ID_USUARIO', '=', session('LoggedUser'))->first()];
         $userLogado = tab_usuarios::where('ID_USUARIO', '=', session('LoggedUser'))->first();
-         $qtdUsers = DB::table('tab_usuarios')->where('USU_STATUS', 'A')->count();
-        $id = Arr::pluck($data,'ID_USUARIO')[0];
+        $qtdUsers = DB::table('tab_usuarios')->where('USU_STATUS', 'A')->count();
+        $id = Arr::pluck($data, 'ID_USUARIO')[0];
         //$dpto = Arr::pluck($data,'ID_DPTO')[0];
         $chamados = DB::table('tab_chamados')->get();
-        
+
         $qtdChamados = DB::table('tab_chamados')->count();
-        $qtdMneusChamados = DB::table('tab_chamados')->where('ID_USUARIO',$id)->count();
+        $qtdMneusChamados = DB::table('tab_chamados')->where('ID_USUARIO', $id)->count();
 
         // Qtd Abertos no Mes
-        $aJan = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-01-01',$ano.'-01-31'])->count();
-        $aFev = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-02-01',$ano.'-02-29'])->count();
-        $aMar = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-03-01',$ano.'-03-31'])->count();
-        $aAbr = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-04-01',$ano.'-04-30'])->count();
-        $aMai = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-05-01',$ano.'-05-31'])->count();
-        $aJun = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-06-01',$ano.'-06-30'])->count();
-        $aJul = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-07-01',$ano.'-07-31'])->count();
-        $aAgo = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-08-01',$ano.'-08-31'])->count();
-        $aSet = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-09-01',$ano.'-09-30'])->count();
-        $aOut = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-10-01',$ano.'-10-31'])->count();
-        $aNov = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-11-01',$ano.'-11-30'])->count();
-        $aDez = DB::table('tab_chamados')->where('STATUS','A')->whereBetween('DATA_ABERTURA',[$ano.'-12-01',$ano.'-12-31'])->count();
-        $abertos = [$aJan,$aFev,$aMar,$aAbr,$aMai,$aJun,$aJul,$aAgo,$aSet,$aOut,$aNov,$aDez];
+        $aJan = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-01-01', $ano . '-01-31'])->count();
+        $aFev = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-02-01', $ano . '-02-29'])->count();
+        $aMar = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-03-01', $ano . '-03-31'])->count();
+        $aAbr = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-04-01', $ano . '-04-30'])->count();
+        $aMai = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-05-01', $ano . '-05-31'])->count();
+        $aJun = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-06-01', $ano . '-06-30'])->count();
+        $aJul = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-07-01', $ano . '-07-31'])->count();
+        $aAgo = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-08-01', $ano . '-08-31'])->count();
+        $aSet = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-09-01', $ano . '-09-30'])->count();
+        $aOut = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-10-01', $ano . '-10-31'])->count();
+        $aNov = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-11-01', $ano . '-11-30'])->count();
+        $aDez = DB::table('tab_chamados')->where('STATUS', 'A')->whereBetween('DATA_ABERTURA', [$ano . '-12-01', $ano . '-12-31'])->count();
+        $abertos = [$aJan, $aFev, $aMar, $aAbr, $aMai, $aJun, $aJul, $aAgo, $aSet, $aOut, $aNov, $aDez];
         // Qtd Fechados no Mes
-        $fJan = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-01-01',$ano.'-01-31'])->count();
-        $fFev = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-02-01',$ano.'-02-29'])->count();
-        $fMar = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-03-01',$ano.'-03-31'])->count();
-        $fAbr = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-04-01',$ano.'-04-30'])->count();
-        $fMai = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-05-01',$ano.'-05-31'])->count();
-        $fJun = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-06-01',$ano.'-06-30'])->count();
-        $fJul = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-07-01',$ano.'-07-31'])->count();
-        $fAgo = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-08-01',$ano.'-08-31'])->count();
-        $fSet = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-09-01',$ano.'-09-30'])->count();
-        $fOut = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-10-01',$ano.'-10-31'])->count();
-        $fNov = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-11-01',$ano.'-11-30'])->count();
-        $fDez = DB::table('tab_chamados')->where('STATUS','F')->whereBetween('DATA_ABERTURA',[$ano.'-12-01',$ano.'-12-31'])->count();
-        $fechados = [$fJan,$fFev,$fMar,$fAbr,$fMai,$fJun,$fJul,$fAgo,$fSet,$fOut,$fNov,$fDez];
+        $fJan = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-01-01', $ano . '-01-31'])->count();
+        $fFev = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-02-01', $ano . '-02-29'])->count();
+        $fMar = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-03-01', $ano . '-03-31'])->count();
+        $fAbr = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-04-01', $ano . '-04-30'])->count();
+        $fMai = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-05-01', $ano . '-05-31'])->count();
+        $fJun = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-06-01', $ano . '-06-30'])->count();
+        $fJul = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-07-01', $ano . '-07-31'])->count();
+        $fAgo = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-08-01', $ano . '-08-31'])->count();
+        $fSet = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-09-01', $ano . '-09-30'])->count();
+        $fOut = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-10-01', $ano . '-10-31'])->count();
+        $fNov = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-11-01', $ano . '-11-30'])->count();
+        $fDez = DB::table('tab_chamados')->where('STATUS', 'F')->whereBetween('DATA_ABERTURA', [$ano . '-12-01', $ano . '-12-31'])->count();
+        $fechados = [$fJan, $fFev, $fMar, $fAbr, $fMai, $fJun, $fJul, $fAgo, $fSet, $fOut, $fNov, $fDez];
         // Qtd EM Atendimento no Mes
-        $eJan = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-01-01',$ano.'-01-31'])->count();
-        $eFev = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-02-01',$ano.'-02-29'])->count();
-        $eMar = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-03-01',$ano.'-03-31'])->count();
-        $eAbr = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-04-01',$ano.'-04-30'])->count();
-        $eMai = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-05-01',$ano.'-05-31'])->count();
-        $eJun = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-06-01',$ano.'-06-30'])->count();
-        $eJul = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-07-01',$ano.'-07-31'])->count();
-        $eAgo = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-08-01',$ano.'-08-31'])->count();
-        $eSet = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-09-01',$ano.'-09-30'])->count();
-        $eOut = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-10-01',$ano.'-10-31'])->count();
-        $eNov = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-11-01',$ano.'-11-30'])->count();
-        $eDez = DB::table('tab_chamados')->where('STATUS','E')->whereBetween('DATA_ABERTURA',[$ano.'-12-01',$ano.'-12-31'])->count();
-        $emAtendimento = [$eJan,$eFev,$eMar,$eAbr,$eMai,$eJun,$eJul,$eAgo,$eSet,$eOut,$eNov,$eDez];
-                        
-        $qtdSemAtendimmento = DB::table('tab_chamados')->where('STATUS','A')->count();
-        $qtdMeusSemAtendimmento = DB::table('tab_chamados')->where('STATUS','A')->where('ID_USUARIO',$id)->count();
+        $eJan = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-01-01', $ano . '-01-31'])->count();
+        $eFev = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-02-01', $ano . '-02-29'])->count();
+        $eMar = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-03-01', $ano . '-03-31'])->count();
+        $eAbr = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-04-01', $ano . '-04-30'])->count();
+        $eMai = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-05-01', $ano . '-05-31'])->count();
+        $eJun = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-06-01', $ano . '-06-30'])->count();
+        $eJul = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-07-01', $ano . '-07-31'])->count();
+        $eAgo = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-08-01', $ano . '-08-31'])->count();
+        $eSet = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-09-01', $ano . '-09-30'])->count();
+        $eOut = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-10-01', $ano . '-10-31'])->count();
+        $eNov = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-11-01', $ano . '-11-30'])->count();
+        $eDez = DB::table('tab_chamados')->where('STATUS', 'E')->whereBetween('DATA_ABERTURA', [$ano . '-12-01', $ano . '-12-31'])->count();
+        $emAtendimento = [$eJan, $eFev, $eMar, $eAbr, $eMai, $eJun, $eJul, $eAgo, $eSet, $eOut, $eNov, $eDez];
 
-        $qtdEncerrados = DB::table('tab_chamados')->where('STATUS','F')->count();
-        $qtdMeusEncerrados = DB::table('tab_chamados')->where('STATUS','F')->where('ID_USUARIO',$id)->count();
-        
-        $qtdEmAtendimento = DB::table('tab_chamados')->where('STATUS','E')->count();
-        $qtdMeuEmAtendimento = DB::table('tab_chamados')->where('STATUS','E')->where('ID_USUARIO',$id)->count();
+        $qtdSemAtendimmento = DB::table('tab_chamados')->where('STATUS', 'A')->count();
+        $qtdMeusSemAtendimmento = DB::table('tab_chamados')->where('STATUS', 'A')->where('ID_USUARIO', $id)->count();
 
-        $qtdUsuarios = DB::table('tab_usuarios')->where('USU_STATUS','A')->count();
-        $percente = ($qtdEncerrados * 100)/$qtdChamados ;
-        $nivel =  Arr::pluck($data,'USU_NIVEL')[0];
-        if($nivel == "A"){
+        $qtdEncerrados = DB::table('tab_chamados')->where('STATUS', 'F')->count();
+        $qtdMeusEncerrados = DB::table('tab_chamados')->where('STATUS', 'F')->where('ID_USUARIO', $id)->count();
+
+        $qtdEmAtendimento = DB::table('tab_chamados')->where('STATUS', 'E')->count();
+        $qtdMeuEmAtendimento = DB::table('tab_chamados')->where('STATUS', 'E')->where('ID_USUARIO', $id)->count();
+
+        $qtdUsuarios = DB::table('tab_usuarios')->where('USU_STATUS', 'A')->count();
+        $percente = ($qtdEncerrados * 100) / $qtdChamados;
+        $nivel =  Arr::pluck($data, 'USU_NIVEL')[0];
+        if ($nivel == "A") {
             $qtd = $qtdChamados;
             $encerrados = $qtdEncerrados;
             $atendidos =  $qtdEmAtendimento;
             $semAtendimento = $qtdSemAtendimmento;
-        }else{
+        } else {
             $qtd = $qtdMneusChamados;
             $encerrados = $qtdMeusEncerrados;
             $atendidos = $qtdMeuEmAtendimento;
             $semAtendimento = $qtdMeusSemAtendimmento;
-            
         }
         $fotoPessoa = DB::table('tab_pessoas')->where('ID_PESSOA', $id)->select('PESSOA_FOTO')->get();
         $foto = Arr::pluck($fotoPessoa, 'PESSOA_FOTO');
         //dd(Arr::pluck($foto, 'PESSOA_FOTO')[0]);
-        $status = Arr::pluck($chamados,'STATUS');
+        $status = Arr::pluck($chamados, 'STATUS');
         //dd($status);
         //dd(Arr::pluck($data,'ID_PESSOA'));
         return view('adm.home')->with([
-            'data'=>Arr::pluck($data,'USU_LOGIN'),
-            'iduser'=> Arr::pluck($data,'ID_USUARIO'),
-            'idpessoa'=>Arr::pluck($data,'ID_PESSOA'),
-            'imagem' =>$foto,
-            'qtdChamados'=>$qtd,
-            'qtdUsuarios'=>$qtdUsuarios,
-            'qtdSemAtendimmento'=>$semAtendimento,
-            'qtdEncerrados'=>$encerrados,
-            'percente'=> number_format($percente, 2, ',', ''),
-            'nivel'=>$nivel,
-            'qtdEmAtendimento'=>$atendidos,
+            'data' => Arr::pluck($data, 'USU_LOGIN'),
+            'iduser' => Arr::pluck($data, 'ID_USUARIO'),
+            'idpessoa' => Arr::pluck($data, 'ID_PESSOA'),
+            'imagem' => $foto,
+            'qtdChamados' => $qtd,
+            'qtdUsuarios' => $qtdUsuarios,
+            'qtdSemAtendimmento' => $semAtendimento,
+            'qtdEncerrados' => $encerrados,
+            'percente' => number_format($percente, 2, ',', ''),
+            'nivel' => $nivel,
+            'qtdEmAtendimento' => $atendidos,
             // usa nos Graficos
-            'chamados'=>$chamados,
-            'abertos'=>$abertos,
-            'fechados'=>$fechados,
-            'emAtendimento'=>$emAtendimento,
-            'logado'=>$userLogado,
-            'qtdeUsers'=>$qtdUsers,
+            'chamados' => $chamados,
+            'abertos' => $abertos,
+            'fechados' => $fechados,
+            'emAtendimento' => $emAtendimento,
+            'logado' => $userLogado,
+            'qtdeUsers' => $qtdUsers,
         ]);
     }
 
@@ -195,6 +194,7 @@ class UsuariosController extends Controller
         $nivel =  Arr::pluck($data, 'USU_NIVEL')[0];
         if ($nivel != 'A') {
             //abort(403,"Acesso não autorizado");
+            //session()->flash('error2', true);
             Session::flash('error2', true);
             return back()->with([
                 'qtdeUsers' => $qtdUsers,  // Qtde de usuários ativos
@@ -245,7 +245,7 @@ class UsuariosController extends Controller
         $id = Arr::pluck($data, 'ID_USUARIO')[0];
         $foto = Arr::pluck($data, 'FOTO')[0];
         $nivel =  Arr::pluck($data, 'USU_NIVEL')[0];
-        $dptos = DB::table('tab_departamentos')->select('ID_DPTO','DESCRICAO')->get();
+        $dptos = DB::table('tab_departamentos')->select('ID_DPTO', 'DESCRICAO')->get();
 
         // Não deixa alterar se não for usuário Administrador
         /*
@@ -364,7 +364,7 @@ class UsuariosController extends Controller
                     'idpessoa' => Arr::pluck($data, 'ID_PESSOA'),
                     'imagem' => $foto,
                     'nivel' => $nivel,
-                    'dptos'=>$dptos,
+                    'dptos' => $dptos,
 
                 ]);
             } else {
@@ -378,7 +378,7 @@ class UsuariosController extends Controller
             $input = $request->all();
             $id = $request->id;
             $user = tab_usuarios::findOrFail($id);
-            
+
             $rules = [
                 'name' => 'required',
                 'cpf' => 'required',
@@ -409,20 +409,20 @@ class UsuariosController extends Controller
                     ->withInput();
             }
 
-            if(!$request->tipo){
+            if (!$request->tipo) {
                 $tipo = $user->USU_NIVEL;
-            }else{
+            } else {
                 $tipo = $request->tipo;
             }
-           // dd( $tipo);
+            // dd( $tipo);
 
             //Insert data into database
-           
+
             $user->ID_DPTO = $request->dpto;
             $user->USU_NIVEL = $tipo;
             $user->USU_LOGIN = $request->name;
             $user->SENHA = $request->password;
-            $user->EMAIL = $request->email; 
+            $user->EMAIL = $request->email;
             $user->CPF = $request->cpf;
             $user->CLIENTE = $request->cliente;
             $user->USU_DATA_UPDATE = date('Y-m-d H:i:s');
@@ -478,7 +478,7 @@ class UsuariosController extends Controller
                     'iduser' => Arr::pluck($data, 'ID_USUARIO'),
                     'imagem' => $foto,
                     'nivel' => $nivel,
-                    'dptos'=>$dptos,
+                    'dptos' => $dptos,
                 ]);
             } else {
                 Session::flash('error', true);
@@ -501,8 +501,8 @@ class UsuariosController extends Controller
         $qtdUsers = DB::table('tab_usuarios')->where('USU_STATUS', 'A')->count();
         $foto = Arr::pluck($data, 'FOTO');
         $userLogado = tab_usuarios::where('ID_USUARIO', '=', session('LoggedUser'))->first();
-        $dpto = DB::table('tab_departamentos')->select('ID_DPTO','DESCRICAO')->get();
-        $clientes = DB::table('tab_clientes')->select('ID_CLIENTE','NOME')->get();
+        $dpto = DB::table('tab_departamentos')->select('ID_DPTO', 'DESCRICAO')->get();
+        $clientes = DB::table('tab_clientes')->select('ID_CLIENTE', 'NOME')->get();
         $nivel =  Arr::pluck($data, 'USU_NIVEL')[0];
 
 
@@ -528,7 +528,7 @@ class UsuariosController extends Controller
             $userLogado = tab_usuarios::where('ID_USUARIO', '=', session('LoggedUser'))->first();
             $data = ['LoggedUserInfo' => tab_usuarios::where('ID_USUARIO', '=', session('LoggedUser'))->first()];
             $nivel =  Arr::pluck($data, 'USU_NIVEL')[0];
-            $clientes = DB::table('tab_clientes')->select('ID_CLIENTE','NOME')->get();
+            $clientes = DB::table('tab_clientes')->select('ID_CLIENTE', 'NOME')->get();
 
             return view('adm.register-user')->with([
                 'logado' => $userLogado, //Usuário Logado
@@ -538,7 +538,7 @@ class UsuariosController extends Controller
                 'iduser' => Arr::pluck($data, 'ID_USUARIO'),
                 'imagem' => Arr::pluck($data, 'FOTO'),
                 'nivel' => $user->USU_NIVEL,
-                'dptos'=>$dpto,
+                'dptos' => $dpto,
                 'clientes' => $clientes,
             ]);
         }
