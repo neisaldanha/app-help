@@ -2,7 +2,7 @@
 
 @section('content_header') @stop @section('content')
 
-        
+
     <div class="">
         <div id="main-wrapper">
             <div class="page-title">
@@ -20,7 +20,7 @@
                         <div class="panel-body">
                             <div class="info-box-stats">
                                 <p class="counter">{{$qtdChamados}}</p>
-                                <span class="info-box-title">Total Chamados Abertos</span>
+                                <span class="info-box-title">Total O.S Abertas</span>
                             </div>
                             <div class="info-box-icon">
                                 <i class="icon-check"></i>
@@ -193,11 +193,11 @@
                 </div>
             </div><!-- Row -->
             @endif
-        </div><!-- Main Wrapper -->       
+        </div><!-- Main Wrapper -->
     </div><!-- Page Inner -->
 
-       
-        <!-- Novo 
+
+        <!-- Novo
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
         <script>
           document.getElementById('btn').onclick = function() {
@@ -278,7 +278,7 @@ var ano = <?php echo date('Y');?>
     });
 */
     Morris.Bar({
-        element: 'morris2', 
+        element: 'morris2',
         data: [
             { period: 'Jan', a: aJan, b: fJan , c:eJan},
             { period: 'Fev', a: aFev, b: fFev , c:eFev},
@@ -286,12 +286,12 @@ var ano = <?php echo date('Y');?>
             { period: 'Abr', a: aAbr, b: fAbr , c:eAbr},
             { period: 'Mai', a: aMai, b: fMai , c:eMai},
             { period: 'Jun', a: aJun, b: fJun , c:eJun},
-            { period: 'Jul', a: aJul, b: fJul , c:eJul}, 
-            { period: 'Ago', a: aAgo, b: fAgo , c:eAgo}, 
-            { period: 'Set', a: aSet, b: fSet , c:eSet}, 
-            { period: 'Out', a: aOut, b: fOut , c:eOut}, 
-            { period: 'Nov', a: aNov, b: fNov , c:eNov}, 
-            { period: 'Dez', a: aDez, b: fDez , c:eDez}, 
+            { period: 'Jul', a: aJul, b: fJul , c:eJul},
+            { period: 'Ago', a: aAgo, b: fAgo , c:eAgo},
+            { period: 'Set', a: aSet, b: fSet , c:eSet},
+            { period: 'Out', a: aOut, b: fOut , c:eOut},
+            { period: 'Nov', a: aNov, b: fNov , c:eNov},
+            { period: 'Dez', a: aDez, b: fDez , c:eDez},
         ],
         xkey: 'period',
         ykeys: ['a', 'b','c'],
@@ -312,7 +312,7 @@ var ano = <?php echo date('Y');?>
             { year: '2009', a: 100, b: 90 },
             { year: '2010', a: 60, b: 50 },
             { year: '2011', a: 75, b: 65 },
-            { year: '2012', a: 100, b: 90 } 
+            { year: '2012', a: 100, b: 90 }
         ],
         xkey: 'year',
         ykeys: ['a', 'b'],
@@ -332,7 +332,7 @@ var ano = <?php echo date('Y');?>
         resize: true,
         colors: [ '#FF0000','#006400','#00008B'],
     });
-   
+
     /*
         google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
@@ -352,7 +352,7 @@ var ano = <?php echo date('Y');?>
           ['Out', aOut, fOut, eOut],
           ['Nov', aNov, fNov, eNov],
           ['Dez', aDez, fDez, eDez],
-          
+
         ]);
 
         var options = {
@@ -862,6 +862,6 @@ var ano = <?php echo date('Y');?>
 /*********************** FIM GERA GRAFICOS **************************/
 </script>
 
-   
+
 
     @stop @section('css') @stop @section('js') @stop

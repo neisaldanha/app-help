@@ -46,7 +46,6 @@
 	<div class="page-inner">
 		<div id="main-wrapper">
 			<div class="page-title">
-				
                 <h3 align="center"><img src="{{asset('imagens/grau_certo_logo.jpg')}}" alt="Logo" width="60" height="40"class="brand-image -circle elevation-3"> System Grau Certo</h3>
                 <div class="page-breadcrumb">
                     <ol class="breadcrumb">
@@ -91,13 +90,13 @@
 			<table id="chamados" class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>CHAMADO</th>
+						<th>CÓDIGO O.S</th>
 						<th>TITULO</th>
-						<th>Abertura</th>
-						<th>Usuario</th>
+						<th>ABERTURA</th>
+						<th>SOLICITANTE</th>
 						<th>STATUS</th>
-						<th>Visualizou</th>
-						<th>Atendente</th>
+						<th>VIZUALIZADA</th>
+						<th>TÉCNICO</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -141,7 +140,7 @@
                         <div class="panel-body">
                             <div class="info-box-stats">
                                 <p class="counter">{{$abertosDpto}}</p>
-                                <span class="info-box-title">Total Chamados Abertos</span>
+                                <span class="info-box-title">Total O.S Abertas</span>
                             </div>
                             <div class="info-box-icon">
                                 <i class="icon-check"></i>
@@ -232,9 +231,6 @@
                     </div>
                 </div>
 				<div class="form-group col-4"></div>
-			</div>
-			<br>
-            <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-white">
                         <div class="panel-body">
@@ -242,54 +238,35 @@
                         </div>
                     </div>
                 </div>
+			</div>
+			<br>
+            <section>
+
+                <div class="row">
+                    <div class=" col-sm-4">
+                        <div class="panel info-box panel-white">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">O.S Por Mês</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-sm-4">
+                        <div class="panel info-box panel-white">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Quantidade de O.S</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris4"></div>
+                            </div>
+                        </div>
+                    </div><!-- Row -->
+                </div>
+            </section>
             </div><!-- Row -->
-            <div class="row">
-            	<!--
-                <div class="col-md-6">
-                    <div class="panel panel-white">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Area Chart</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris1"></div>
-                        </div>
-                    </div>
-                </div>
-            	-->
-                <div class="col-md-6">
-                    <div class="panel panel-white">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">O.S Por Mês</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris2"></div>
-                        </div>
-                    </div>
-                </div>
-            	<!--
-                <div class="col-md-6">
-                    <div class="panel panel-white">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Line Chart</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris3"></div>
-                        </div>
-                    </div>
-                </div>
-                -->
-                <div class="col-md-6">
-                    <div class="panel panel-white">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Quantidade de O.S</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris4"></div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- Row -->
-        </div><!-- Main Wrapper -->       
+        </div><!-- Main Wrapper -->
     </div><!-- Page Inner -->
 		<!-- Javascripts -->
         <script src="{{asset('plugin/plugins/jquery/jquery-2.1.4.min.js')}}"></script>
@@ -310,10 +287,10 @@
         <!--<script src="{{asset('plugin/js/pages/charts-morris.js')}}"></script>-->
         <script src="{{asset('plugin/plugins/morris/raphael.min.js')}}"></script>
         <script src="{{asset('plugin/plugins/morris/morris.min.js')}}"></script>
-        
-      
 
-        <!-- Novo 
+
+
+        <!-- Novo
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
 		<script>
 	      document.getElementById('btn').onclick = function() {
@@ -394,7 +371,7 @@ var ano = <?php echo date('Y');?>
     });
 */
     Morris.Bar({
-        element: 'morris2', 
+        element: 'morris2',
         data: [
             { period: 'Jan', a: aJan, b: fJan , c:eJan},
             { period: 'Fev', a: aFev, b: fFev , c:eFev},
@@ -402,12 +379,12 @@ var ano = <?php echo date('Y');?>
             { period: 'Abr', a: aAbr, b: fAbr , c:eAbr},
             { period: 'Mai', a: aMai, b: fMai , c:eMai},
             { period: 'Jun', a: aJun, b: fJun , c:eJun},
-            { period: 'Jul', a: aJul, b: fJul , c:eJul}, 
-            { period: 'Ago', a: aAgo, b: fAgo , c:eAgo}, 
-            { period: 'Set', a: aSet, b: fSet , c:eSet}, 
-            { period: 'Out', a: aOut, b: fOut , c:eOut}, 
-            { period: 'Nov', a: aNov, b: fNov , c:eNov}, 
-            { period: 'Dez', a: aDez, b: fDez , c:eDez}, 
+            { period: 'Jul', a: aJul, b: fJul , c:eJul},
+            { period: 'Ago', a: aAgo, b: fAgo , c:eAgo},
+            { period: 'Set', a: aSet, b: fSet , c:eSet},
+            { period: 'Out', a: aOut, b: fOut , c:eOut},
+            { period: 'Nov', a: aNov, b: fNov , c:eNov},
+            { period: 'Dez', a: aDez, b: fDez , c:eDez},
         ],
         xkey: 'period',
         ykeys: ['a', 'b','c'],
@@ -428,7 +405,7 @@ var ano = <?php echo date('Y');?>
             { year: '2009', a: 100, b: 90 },
             { year: '2010', a: 60, b: 50 },
             { year: '2011', a: 75, b: 65 },
-            { year: '2012', a: 100, b: 90 } 
+            { year: '2012', a: 100, b: 90 }
         ],
         xkey: 'year',
         ykeys: ['a', 'b'],
@@ -448,7 +425,7 @@ var ano = <?php echo date('Y');?>
         resize: true,
         colors: [ '#FF0000','#006400','#00008B'],
     });
-   
+
 	/*
 		google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
@@ -468,7 +445,7 @@ var ano = <?php echo date('Y');?>
           ['Out', aOut, fOut, eOut],
           ['Nov', aNov, fNov, eNov],
           ['Dez', aDez, fDez, eDez],
-          
+
         ]);
 
         var options = {

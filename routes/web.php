@@ -74,10 +74,10 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/admin/exclui-funcao/{id}', [FuncaoController::class, 'destroy']);
 
     // Rotas Painel
-    Route::get('/painel/lista-pessoas', [PessoasController::class, 'index']);
-    Route::get('/painel/edit/{id}', [PessoasController::class, 'show']);
-    Route::post('/painel/store', [PessoasController::class, 'store'])->name('painel.save');
-    Route::get('/painel/pessoa/delete/{id}', [PessoasController::class, 'destroy'])->name('painel.pessoas');
+    //Route::get('/painel/lista-pessoas', [PessoasController::class, 'index']);
+    //Route::get('/painel/edit/{id}', [PessoasController::class, 'show']);
+    //Route::post('/painel/store', [PessoasController::class, 'store'])->name('painel.save');
+    //Route::get('/painel/pessoa/delete/{id}', [PessoasController::class, 'destroy'])->name('painel.pessoas');
 
     //CHAMADOS
     Route::get('/painel/lista-chamados', [ChamadosController::class, 'index']);
@@ -95,10 +95,10 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/painel/gera-pdf-descricao/{id}', [ChamadosController::class, 'pdfDescricao']);
 
     // Rotas Agenda
-    Route::get('painel/agenda',[AgendaController::class,'index']);
-    Route::get('painel/create',[AgendaController::class,'store']);
-    Route::get('painel/agenda-demanda',[AgendaController::class,'create']);
-    Route::get('painel/agenda/excluir',[AgendaController::class,'destroy']);
+    Route::get('painel/agenda', [AgendaController::class, 'index']);
+    Route::get('painel/create', [AgendaController::class, 'store']);
+    Route::get('painel/agenda-demanda', [AgendaController::class, 'create']);
+    Route::get('painel/agenda/excluir', [AgendaController::class, 'destroy']);
 
     // Send E-mails
     Route::get('/email/form-email', [SendEmailController::class, 'index']);
